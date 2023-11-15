@@ -70,7 +70,7 @@ public class SerialPortService implements DisposableBean, Runnable {
 				}
 			}
 			
-			while ((serialPort.isOpen()) && (enabled)) {
+			while ((enabled) && (serialPort != null) && (serialPort.isOpen())) {
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
@@ -186,7 +186,7 @@ public class SerialPortService implements DisposableBean, Runnable {
 			
 			switch (msg.charAt(0)) {
 				case 'S':
-					currentKey.setKeyMode(msg.charAt(8+1));
+					currentKey.setKeyMode((byte)msg.charAt(8+1));
 					currentKey.setKeyNumber(Long.parseLong(msg.substring(1, 8), 16));
 					//currentKey.setKeyTimestamp(Long.parseLong(msg.substring(8 + 2), 16));
 					txMessage = "]a99999999\n\0";

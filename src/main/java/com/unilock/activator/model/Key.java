@@ -1,14 +1,21 @@
 package com.unilock.activator.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Keys")
 public class Key {
-	private char keyMode;
+	@Id
 	private long keyNumber;
+	private byte keyMode;
 	private long keyTimestamp;
 	
-	public char getKeyMode() {
+	public byte getKeyMode() {
 		return keyMode;
 	}
-	public void setKeyMode(char keyMode) {
+	public void setKeyMode(byte keyMode) {
 		this.keyMode = keyMode;
 	}
 	public long getKeyNumber() {
