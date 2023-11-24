@@ -3,6 +3,7 @@ package com.unilock.activator.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 /**
  * Identifies a controller that will be created by an {@link FXMLLoader}. The
@@ -21,5 +22,5 @@ public interface FXMLController {
 	 * e.g. attaching property listeners.
 	 */
 	void initialize();
-
+	void setStage(Stage stage);
 }

@@ -1,15 +1,20 @@
 package com.unilock.activator.view;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.util.Objects;
-import javafx.application.Platform;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import org.slf4j.Logger;
 
 import com.unilock.activator.config.SpringFXMLLoader;
+import com.unilock.activator.controller.FXMLController;
 
-import static org.slf4j.LoggerFactory.getLogger;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Manages switching Scenes on the Primary Stage
@@ -30,6 +35,18 @@ public class StageManager {
     public void switchScene(final FXMLView view) {
         Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
         show(viewRootNodeHierarchy, view.getTitle());
+    }
+    
+    public void showDialog(final FXMLView view) {
+    	Stage dialog = new Stage();
+    	Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
+    	dialog.initStyle(StageStyle.UTILITY);
+    	Scene scene = prepareScene(viewRootNodeHierarchy);
+    	FXMLController controller = (FXMLController)viewRootNodeHierarchy.getUserData();
+    	controller.setStage(dialog);
+    	dialog.setTitle(view.getTitle());
+    	dialog.setScene(scene);
+    	dialog.showAndWait();
     }
     
     private void show(final Parent rootnode, String title) {
@@ -66,8 +83,11 @@ public class StageManager {
     private Parent loadViewNodeHierarchy(String fxmlFilePath) {
         Parent rootNode = null;
         try {
-            rootNode = springFXMLLoader.load(fxmlFilePath);
+        	FXMLLoader loader = springFXMLLoader.getLoader(fxmlFilePath);
+            rootNode = loader.load();
             Objects.requireNonNull(rootNode, "A Root FXML node must not be null");
+            FXMLController controller = loader.getController();
+            rootNode.setUserData(controller);
         } catch (Exception exception) {
             logAndExit("Unable to load FXML view" + fxmlFilePath, exception);
         }

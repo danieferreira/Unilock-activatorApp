@@ -5,27 +5,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unilock.activator.controller.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unilock.activator.controller.MainController">
    <left>
             <VBox prefWidth="148.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnLocks" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="33.0" text="Manage Locks">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="btnKeys" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="33.0" text="Manage Keys">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="btnAccounts" layoutX="15.0" layoutY="53.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="33.0" text="Manage Users">
+                  <Button fx:id="btnKeys" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="33.0" text="View Keys">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -56,7 +45,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" text="Logout">
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#Logout" prefHeight="33.0" prefWidth="100.0" text="Logout">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -64,4 +53,25 @@
                </children>
             </HBox>
    </top>
+   <center>
+      <TableView fx:id="tableKeys" prefHeight="200.0" prefWidth="280.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colKey" prefWidth="75.0" text="Key" />
+          <TableColumn fx:id="colActive" prefWidth="75.0" text="Active" />
+            <TableColumn fx:id="colActivated" prefWidth="120.0" text="Activated" />
+            <TableColumn fx:id="colRemaining" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="colEnable" prefWidth="75.0" text="" />
+        </columns>
+      </TableView>
+   </center>
+   <right>
+      <VBox prefHeight="355.0" prefWidth="87.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnAddKey" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddKey" prefHeight="33.0" text="Add Key">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

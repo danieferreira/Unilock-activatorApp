@@ -23,15 +23,15 @@ public enum FXMLView {
         public String getFxmlFile() {
             return "/view/Login.fxml";
         }
-    }, LOCKS {
+    }, KEY {
         @Override
         public String getTitle() {
-            return getStringFromResourceBundle("lockview.title");
+            return getStringFromResourceBundle("addkey.title");
         }
 
         @Override
         public String getFxmlFile() {
-            return "/view/Locks.fxml";
+            return "/view/Key.fxml";
         }
     }, KEYS {
 

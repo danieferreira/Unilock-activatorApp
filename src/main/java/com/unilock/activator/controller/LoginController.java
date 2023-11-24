@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 @Lazy
 @Component
@@ -110,5 +111,11 @@ public class LoginController implements FXMLController {
 
 	public String getPassword() {
 		return txtPassword.getText();
+	}
+
+	@Override
+	public void setStage(Stage stage) {
+		// TODO Auto-generated method stub
+		
 	}
 }
